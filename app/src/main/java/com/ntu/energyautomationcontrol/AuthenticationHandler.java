@@ -10,6 +10,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.concurrent.Executor;
+
 import static android.content.ContentValues.TAG;
 
 public class AuthenticationHandler {
@@ -27,8 +29,8 @@ public class AuthenticationHandler {
 
     private void createAccount(String email, String password)
     {
-        /*userAuthentication.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+        userAuthentication.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener((Executor) this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
@@ -39,20 +41,19 @@ public class AuthenticationHandler {
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                            //TODO Toast.makeText(EmailPasswordActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(this, "Authentication failed.", Toast.LENGTH_SHORT).show();
                             //TODO updateUI(null);
                         }
 
                         // ...
                     }
-                });*/
+                });
     }
 
     private void LoginUser(String email, String password)
     {
-        /*userAuthentication.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+        userAuthentication.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener((Executor) this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
@@ -63,13 +64,12 @@ public class AuthenticationHandler {
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithEmail:failure", task.getException());
-                            Toast.makeText(EmailPasswordActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(this, "Authentication failed.", Toast.LENGTH_SHORT).show();
                             //TODO updateUI(null);
                         }
 
                         // ...
                     }
-                });*/
+                });
     }
 }

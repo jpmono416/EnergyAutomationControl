@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Energy Automation Control</string>
+    <string name="switch_heating_on">Heating</string>
+    <string name="current_temperature_text">Current temperature</string>
+    <string name="button_manual">Manual</string>
+    <string name="button_auto">Auto</string>
+
+    <!-- Login activity -->
+    <string name="email_text">Email</string>
+    <string name="register_button">No account yet? Create one</string>
+    <string name="email_enter">Please enter your email</string>
+    <string name="login_button">Submit</string>
+    <string name="password_enter">Please enter your password</string>
+    <string name="password_repeat">Please repeat your password</string>
+</resources>

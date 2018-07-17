@@ -12,4 +12,5 @@
     <string name="login_button">Submit</string>
     <string name="password_enter">Please enter your password</string>
     <string name="password_repeat">Please repeat your password</string>
+    <string name="login_switch_button">Switch to login</string>
 </resources>

@@ -9,15 +9,35 @@ import android.widget.Button;
 import android.widget.NumberPicker;
 
 import com.github.stephenvinouze.materialnumberpickercore.MaterialNumberPicker;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.messaging.RemoteMessage;
 
 public class MainActivity extends AppCompatActivity {
 
+    private FirebaseAuth firebaseAuth;
+    private FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private DatabaseReference databaseReference = database.getReference();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        // Listener to send value to DB every time the value on the numberPicker is changed
+        final NumberPicker targetTemperaturePicker = (NumberPicker) findViewById(R.id.currentTemperaturePicker);
+
+        targetTemperaturePicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+            @Override
+            public void onValueChange(NumberPicker picker, int oldVal, int newValue) {
+                firebaseAuth = FirebaseAuth.getInstance();
+                final String UID = firebaseAuth.getUid();
+                databaseReference.child("users").child(UID).child("targetTemperature").setValue(newValue);
+            }
+        });
     }
 
     private void sendMessageoToFirebase(View view)
@@ -29,4 +49,5 @@ public class MainActivity extends AppCompatActivity {
                 .addData("my_action","SAY_HELLO")
                 .build());
     }
+
 }

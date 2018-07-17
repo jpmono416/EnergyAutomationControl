@@ -26,7 +26,7 @@ public class AuthenticationHandler {
         FirebaseUser currentUser = userAuthentication.getCurrentUser();
         //TODO updateUI(currentUser);
     }
-
+/*
     private void createAccount(String email, String password)
     {
         userAuthentication.createUserWithEmailAndPassword(email, password)
@@ -41,7 +41,7 @@ public class AuthenticationHandler {
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                            //Toast.makeText(this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(this, "Authentication failed.", Toast.LENGTH_SHORT).show();
                             //TODO updateUI(null);
                         }
 
@@ -72,4 +72,5 @@ public class AuthenticationHandler {
                     }
                 });
     }
+    */
 }

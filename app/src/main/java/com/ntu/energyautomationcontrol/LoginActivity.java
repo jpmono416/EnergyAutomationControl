@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -21,9 +22,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.concurrent.Executor;
 
 import static android.content.ContentValues.TAG;
+import static android.view.View.GONE;
+import static android.view.View.INVISIBLE;
+import static android.view.View.VISIBLE;
 
 public class LoginActivity extends AppCompatActivity {
-
     private FirebaseAuth userAuthentication;
     private EditText userEmailEntered;
     private EditText userPasswordEntered;
@@ -123,5 +126,23 @@ public class LoginActivity extends AppCompatActivity {
                         }catch(Exception e) { e.printStackTrace(); }
                     }
                 });
+    }
+
+    public void switchToRegister(View view)
+    {
+        EditText passwordInput2 = (EditText) findViewById(R.id.passwordInput2);
+        Button switchToRegisterButton = (Button) findViewById(R.id.switchToRegisterButton);
+
+        passwordInput2.setVisibility(VISIBLE);
+        switchToRegisterButton.setVisibility(VISIBLE);
+    }
+
+    public void swithcToLogin(View view)
+    {
+        EditText passwordInput2 = (EditText) findViewById(R.id.passwordInput2);
+        Button switchToRegisterButton = (Button) findViewById(R.id.switchToRegisterButton);
+
+        passwordInput2.setVisibility(GONE);
+        switchToRegisterButton.setVisibility(INVISIBLE);
     }
 }

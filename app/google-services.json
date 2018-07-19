@@ -1,35 +1,35 @@
 {
   "project_info": {
-    "project_number": "152140682888",
-    "firebase_url": "https://energyautomationcontrol-a62ea.firebaseio.com",
-    "project_id": "energyautomationcontrol-a62ea",
-    "storage_bucket": "energyautomationcontrol-a62ea.appspot.com"
+    "project_number": "764436153655",
+    "firebase_url": "https://energyautomation-jonathan.firebaseio.com",
+    "project_id": "energyautomation-jonathan",
+    "storage_bucket": "energyautomation-jonathan.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:152140682888:android:bdfaffabee7876dd",
+        "mobilesdk_app_id": "1:764436153655:android:bdfaffabee7876dd",
         "android_client_info": {
           "package_name": "com.ntu.energyautomationcontrol"
         }
       },
       "oauth_client": [
         {
-          "client_id": "152140682888-sffvt352rgltr18a23tg2g3bfonrqrqo.apps.googleusercontent.com",
+          "client_id": "764436153655-otm6186dsl04hk4mmjk4tvsvatg1tc1p.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.ntu.energyautomationcontrol",
-            "certificate_hash": "f4c3bd6baf8cd82f6b8a8e431f44ad53de89245c"
+            "certificate_hash": "41137f28ec5b9134b507eee5a33d9ce875541442"
           }
         },
         {
-          "client_id": "152140682888-ti75sco1kf7v21icf1ee3jihqnt6g2t7.apps.googleusercontent.com",
+          "client_id": "764436153655-r6d244hgn2805nig7igq8jbum17bm9q7.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBgybfdyTlyvjNGNgbSOBlv0Hygh6BYBPA"
+          "current_key": "AIzaSyDLj_Cf_qMPcLtGBP5oqp_xKs2hYfLyEPU"
         }
       ],
       "services": {
@@ -40,7 +40,7 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "152140682888-ti75sco1kf7v21icf1ee3jihqnt6g2t7.apps.googleusercontent.com",
+              "client_id": "764436153655-r6d244hgn2805nig7igq8jbum17bm9q7.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

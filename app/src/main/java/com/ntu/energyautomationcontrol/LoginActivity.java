@@ -52,10 +52,18 @@ public class LoginActivity extends AppCompatActivity {
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = userAuthentication.getCurrentUser();
         //TODO updateUI(currentUser);
+
+        if(currentUser != null){
+            Intent skipLog = new Intent(LoginActivity.this, MainActivity.class);
+            startActivity(skipLog);
+            finish();
+        }
     }
 
-    private void createAccount(View view)
+    public void createAccount(View view)
     {
+        /*Toast.makeText(getApplicationContext(), "Came into the function", Toast.LENGTH_SHORT).show();*/
+
         if(TextUtils.isEmpty(userEmailEntered.getText())  || TextUtils.isEmpty(userPasswordEntered.getText()) || TextUtils.isEmpty(userPasswordRepeated.getText()))
         {
             Toast.makeText(getApplicationContext(), "Please fill in every field", Toast.LENGTH_SHORT).show();
@@ -66,8 +74,13 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Please make sure passwords match", Toast.LENGTH_SHORT).show();
             return;
         }
-        userAuthentication.createUserWithEmailAndPassword(userEmailEntered.getText().toString(), userPasswordEntered.getText().toString())
-                .addOnCompleteListener((Executor) this, new OnCompleteListener<AuthResult>() {
+
+        String email = userEmailEntered.getText().toString().trim();
+        String passw = userPasswordEntered.getText().toString().trim();
+
+
+        userAuthentication.createUserWithEmailAndPassword(email, passw)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         try
@@ -96,7 +109,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-    private void loginUser(View view)
+    public void loginUser(View view)
     {
 
         if(TextUtils.isEmpty(userEmailEntered.getText())  || TextUtils.isEmpty(userPasswordEntered.getText()))
@@ -132,17 +145,22 @@ public class LoginActivity extends AppCompatActivity {
     {
         EditText passwordInput2 = (EditText) findViewById(R.id.passwordInput2);
         Button switchToRegisterButton = (Button) findViewById(R.id.switchToRegisterButton);
+        Button switchToLoginButton = (Button) findViewById(R.id.switchToLoginButton);
 
         passwordInput2.setVisibility(VISIBLE);
-        switchToRegisterButton.setVisibility(VISIBLE);
+        switchToRegisterButton.setVisibility(INVISIBLE);
+        switchToLoginButton.setVisibility(VISIBLE);
     }
 
-    public void swithcToLogin(View view)
+    public void switchToLogin(View view)
     {
         EditText passwordInput2 = (EditText) findViewById(R.id.passwordInput2);
         Button switchToRegisterButton = (Button) findViewById(R.id.switchToRegisterButton);
+        Button switchToLoginButton = (Button) findViewById(R.id.switchToLoginButton);
+
 
         passwordInput2.setVisibility(GONE);
-        switchToRegisterButton.setVisibility(INVISIBLE);
+        switchToRegisterButton.setVisibility(VISIBLE);
+        switchToLoginButton.setVisibility(INVISIBLE);
     }
 }

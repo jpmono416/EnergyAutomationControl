@@ -66,7 +66,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="12dp"
         android:onClick="loginUser"
-        android:text="@string/login_button"
+        android:text="@string/login_button_submit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwordInput2" />
@@ -81,7 +81,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="12dp"
         android:onClick="createAccount"
-        android:text="@string/login_button"
+        android:text="@string/register_button_submit"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

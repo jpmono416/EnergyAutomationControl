@@ -34,10 +34,8 @@
                                   <option name="values">
                                     <map>
                                       <entry key="backgroundColor" value="e1ffe4" />
-                                      <entry key="backgroundLayerName" value="ic_launcher_background" />
-                                      <entry key="foregroundImage" value="C:\Users\jpmon\Downloads\Resources app\Fire icon.png" />
-                                      <entry key="foregroundLayerName" value="fire" />
-                                      <entry key="outputName" value="fire_icon" />
+                                      <entry key="foregroundImage" value="C:\Users\N0753746\Downloads\bullseye_grey.png" />
+                                      <entry key="outputName" value="on_off_icon_grey" />
                                       <entry key="previewDensity" value="HIGH" />
                                     </map>
                                   </option>

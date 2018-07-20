@@ -31,6 +31,11 @@ public class LoginActivity extends AppCompatActivity {
     private EditText userEmailEntered;
     private EditText userPasswordEntered;
     private EditText userPasswordRepeated;
+    private EditText passwordInput2;
+    private Button switchToRegisterButton;
+    private Button switchToLoginButton;
+    private Button submitLoginButton;
+    Button submitRegisterButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +47,11 @@ public class LoginActivity extends AppCompatActivity {
         userEmailEntered = findViewById(R.id.emailInput);
         userPasswordEntered = findViewById(R.id.passwordInput);
         userPasswordRepeated = findViewById(R.id.passwordInput2);
+        passwordInput2 = (EditText) findViewById(R.id.passwordInput2);
+        switchToRegisterButton = (Button) findViewById(R.id.switchToRegisterButton);
+        switchToLoginButton = (Button) findViewById(R.id.switchToLoginButton);
+        submitLoginButton = (Button) findViewById(R.id.submitLoginButton);
+        submitRegisterButton = (Button) findViewById(R.id.submitRegisterButton);
 
 
     }
@@ -94,8 +104,10 @@ public class LoginActivity extends AppCompatActivity {
                                 final String UID = userAuthentication.getUid();
                                 myRef.child("users").child(UID).child("currentTemperature").setValue(25);
                                 myRef.child("users").child(UID).child("targetTemperature").setValue(25);
+                                myRef.child("users").child(UID).child("auto").setValue(false);
+                                myRef.child("users").child(UID).child("state").setValue(false);
 
-                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                                startActivity(new Intent(LoginActivity.this, MainActivity.class));
                                 finish();
                             } else {
                                 // If sign in fails, display a message to the user.
@@ -119,7 +131,7 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         userAuthentication.signInWithEmailAndPassword(userEmailEntered.getText().toString(), userPasswordEntered.getText().toString())
-                .addOnCompleteListener((Executor) this, new OnCompleteListener<AuthResult>() {
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         try
@@ -129,7 +141,7 @@ public class LoginActivity extends AppCompatActivity {
                                 Log.d(TAG, "signInWithEmail:success");
                                 FirebaseUser user = userAuthentication.getCurrentUser();
 
-                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                                startActivity(new Intent(LoginActivity.this, MainActivity.class));
                                 finish();
                             } else {
                                 // If sign in fails, display a message to the user.
@@ -143,24 +155,19 @@ public class LoginActivity extends AppCompatActivity {
 
     public void switchToRegister(View view)
     {
-        EditText passwordInput2 = (EditText) findViewById(R.id.passwordInput2);
-        Button switchToRegisterButton = (Button) findViewById(R.id.switchToRegisterButton);
-        Button switchToLoginButton = (Button) findViewById(R.id.switchToLoginButton);
-
         passwordInput2.setVisibility(VISIBLE);
         switchToRegisterButton.setVisibility(INVISIBLE);
         switchToLoginButton.setVisibility(VISIBLE);
+        submitLoginButton.setVisibility(INVISIBLE);
+        submitRegisterButton.setVisibility(VISIBLE);
     }
 
     public void switchToLogin(View view)
     {
-        EditText passwordInput2 = (EditText) findViewById(R.id.passwordInput2);
-        Button switchToRegisterButton = (Button) findViewById(R.id.switchToRegisterButton);
-        Button switchToLoginButton = (Button) findViewById(R.id.switchToLoginButton);
-
-
         passwordInput2.setVisibility(GONE);
         switchToRegisterButton.setVisibility(VISIBLE);
         switchToLoginButton.setVisibility(INVISIBLE);
+        submitLoginButton.setVisibility(VISIBLE);
+        submitRegisterButton.setVisibility(INVISIBLE);
     }
 }

@@ -33,13 +33,13 @@
         app:srcCompat="@mipmap/house_icon" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/currentTemperatureText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="118dp"
-        android:text="19 degree"
+        android:text="@string/degree"
         app:layout_constraintStart_toEndOf="@+id/house_icon"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -47,10 +47,10 @@
         android:id="@+id/flame_icon_black"
         android:layout_width="52dp"
         android:layout_height="52dp"
-        android:layout_marginLeft="35dp"
-        android:layout_marginStart="35dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
         android:layout_marginTop="98dp"
-        app:layout_constraintStart_toEndOf="@+id/textView3"
+        app:layout_constraintEnd_toStartOf="@+id/textView4"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/fire" />
 
@@ -59,19 +59,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="40dp"
-        android:layout_marginLeft="10dp"
         android:layout_marginRight="40dp"
-        android:layout_marginStart="10dp"
         android:layout_marginTop="118dp"
         android:text="@string/switch_heating_on"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/flame_icon_black"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/circle_shape"
-        android:layout_width="180dp"
-        android:layout_height="180dp"
+        android:layout_width="225dp"
+        android:layout_height="225dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
@@ -102,8 +99,8 @@
 -->
     <com.github.stephenvinouze.materialnumberpickercore.MaterialNumberPicker
         android:id="@+id/currentTemperaturePicker"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="107dp"
+        android:layout_height="247dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
@@ -129,26 +126,59 @@
         android:id="@+id/manual_heating_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="80dp"
         android:layout_marginLeft="48dp"
         android:layout_marginStart="48dp"
-        android:text="@string/button_manual"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="70dp"
         android:background="@drawable/round_button_background"
-        />
+        android:onClick="manualClicked"
+        android:text="@string/button_manual"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/on_off_image" />
 
     <Button
         android:id="@+id/auto_heating_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="80dp"
         android:layout_marginEnd="48dp"
         android:layout_marginRight="48dp"
-        android:text="@string/button_auto"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="70dp"
         android:background="@drawable/round_button_background"
-        />
+        android:onClick="autoClicked"
+        android:text="@string/button_auto"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/on_off_image" />
+
+    <ImageView
+        android:id="@+id/on_off_image"
+        android:layout_width="51dp"
+        android:layout_height="52dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:onClick="onOffClicked"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/circle_shape"
+        app:srcCompat="@mipmap/on_off_icon_foreground" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="@string/on_off_text"
+        app:layout_constraintEnd_toEndOf="@+id/on_off_image"
+        app:layout_constraintStart_toStartOf="@+id/on_off_image"
+        app:layout_constraintTop_toBottomOf="@+id/currentTemperaturePicker" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="signOutUser"
+        android:text="Button"
+        tools:layout_editor_absoluteX="4dp"
+        tools:layout_editor_absoluteY="21dp" />
 
 </android.support.constraint.ConstraintLayout>

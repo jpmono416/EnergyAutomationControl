@@ -42,8 +42,12 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        userAuthentication = FirebaseAuth.getInstance();
+        View decorView = getWindow().getDecorView();
+        // Hide the status bar.
+        int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_FULLSCREEN;
+        decorView.setSystemUiVisibility(uiOptions);
 
+        userAuthentication = FirebaseAuth.getInstance();
         userEmailEntered = findViewById(R.id.emailInput);
         userPasswordEntered = findViewById(R.id.passwordInput);
         userPasswordRepeated = findViewById(R.id.passwordInput2);
@@ -85,11 +89,7 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
-        String email = userEmailEntered.getText().toString().trim();
-        String passw = userPasswordEntered.getText().toString().trim();
-
-
-        userAuthentication.createUserWithEmailAndPassword(email, passw)
+        userAuthentication.createUserWithEmailAndPassword(userEmailEntered.getText().toString().trim(), userPasswordEntered.getText().toString().trim())
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {

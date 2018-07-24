@@ -19,7 +19,8 @@
         android:typeface="normal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        />
 
     <ImageView
         android:id="@+id/house_icon"
@@ -130,6 +131,7 @@
         android:layout_marginStart="48dp"
         android:layout_marginTop="70dp"
         android:background="@drawable/round_button_background"
+
         android:onClick="manualClicked"
         android:text="@string/button_manual"
         app:layout_constraintStart_toStartOf="parent"

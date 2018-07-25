@@ -8,6 +8,7 @@
     <string name="on_off_text">On/Off</string>
     <string name="degree">degree</string>
     <string name="degrees">degrees</string>
+    <string name="log_out">Log out</string>
     
     <!-- Login activity -->
     <string name="email_text">Email</string>

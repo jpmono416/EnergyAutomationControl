@@ -20,12 +20,12 @@
             android:layout_marginRight="20dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="8dp"
+            android:background="@drawable/round_button_background"
             android:onClick="loginUser"
             android:text="@string/login_button_submit"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/passwordInput2"
-            android:background="@drawable/round_button_background"/>
+            app:layout_constraintTop_toBottomOf="@+id/passwordInput2" />
 
         <Button
             android:id="@+id/switchToLoginButton"
@@ -72,6 +72,7 @@
             android:ems="10"
             android:hint="Please enter your email"
             android:inputType="textEmailAddress"
+            android:textColorLink="@android:color/transparent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -86,13 +87,13 @@
             android:layout_marginRight="20dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="8dp"
+            android:background="@drawable/round_button_background"
             android:onClick="createAccount"
             android:text="@string/register_button_submit"
             android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/passwordInput2"
-            android:background="@drawable/round_button_background"/>
+            app:layout_constraintTop_toBottomOf="@+id/passwordInput2" />
 
         <EditText
             android:id="@+id/passwordInput2"
@@ -106,7 +107,8 @@
             android:ems="10"
             android:hint="Please repeat your password"
             android:inputType="textPassword"
-            android:visibility="visible"
+            android:textColorLink="@android:color/transparent"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -124,6 +126,7 @@
             android:ems="10"
             android:hint="Please enter your password"
             android:inputType="textPassword"
+            android:textColorLink="@android:color/transparent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/emailInput" />

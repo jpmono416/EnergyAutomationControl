@@ -40,11 +40,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        View decorView = getWindow().getDecorView();
         // Hide the status bar.
+        View decorView = getWindow().getDecorView();
         int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_FULLSCREEN;
         decorView.setSystemUiVisibility(uiOptions);
 
+        // Initialise the variables needed
         on_off_image = (ImageView) findViewById(R.id.on_off_image);
         database = FirebaseDatabase.getInstance();
         databaseReference = database.getReference();
@@ -52,6 +53,10 @@ public class MainActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         UID  = firebaseAuth.getUid();
 
+        /**
+         * Add a value change listener that will update the interface every time any of the values
+         * on the database change due to the action of the IoT device pushing data.
+         */
         databaseReference.addValueEventListener(new ValueEventListener() {
 
             @Override
@@ -83,10 +88,10 @@ public class MainActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError databaseError) {}
         });
 
-
-
-
-        // Listener to send value to DB every time the value on the numberPicker is changed
+        /**
+         * This bit adds a value change listener that posts the new target temperature value to the
+         * database every time the slider is modified
+         */
 
         targetTemperaturePicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
@@ -98,8 +103,14 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    // This is a reusable method for changing the on/off button image
     private void changeImage(int imageSource) { this.on_off_image.setImageResource(imageSource); }
 
+    /**
+     * This code was going to be used for realtime messaging between devices but due to some
+     * limitations on the Raspberri Pi side we decided to go for a loop that checks values over a
+     * certain period of time instead of accessing it real time as it is needed.
+     */
     private void sendMessageoToFirebase(View view)
     {
         FirebaseMessaging fm = FirebaseMessaging.getInstance();
@@ -110,12 +121,20 @@ public class MainActivity extends AppCompatActivity {
                 .build());
     }
 
+    /**
+     * This method pushes the state and mode of the heating to the database, it is executed when
+     * any of the values change
+     */
     private void updateFirebaseVariables() {
 
         databaseReference.child("users").child(UID).child("auto").setValue(this.autoHeating);
         databaseReference.child("users").child(UID).child("state").setValue(this.heatingState);
     }
 
+    /**
+     * These methods are executed when the mode buttons are clicked.
+     * They change the variables and interface, then push to the database
+     */
     public void manualClicked(View view)
     {
         if(!this.autoHeating) { return; }
@@ -134,6 +153,10 @@ public class MainActivity extends AppCompatActivity {
         updateFirebaseVariables();
     }
 
+    /**
+     * This method is executed when the on/off button is clicked. It applies some logic as to
+     * how to behave and finally pushes to the database.
+     */
     public void onOffClicked(View view)
     {
         if(!this.heatingState || this.autoHeating)
@@ -150,6 +173,7 @@ public class MainActivity extends AppCompatActivity {
         updateFirebaseVariables();
     }
 
+    // This method is used for the user log off
     public void signOutUser(View view)
     {
         FirebaseAuth.getInstance().signOut();

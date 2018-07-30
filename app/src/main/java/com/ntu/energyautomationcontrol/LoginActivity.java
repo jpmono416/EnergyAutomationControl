@@ -42,11 +42,12 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        View decorView = getWindow().getDecorView();
         // Hide the status bar.
+        View decorView = getWindow().getDecorView();
         int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_FULLSCREEN;
         decorView.setSystemUiVisibility(uiOptions);
 
+        // Initialise all required interface elements
         userAuthentication = FirebaseAuth.getInstance();
         userEmailEntered = findViewById(R.id.emailInput);
         userPasswordEntered = findViewById(R.id.passwordInput);
@@ -65,19 +66,20 @@ public class LoginActivity extends AppCompatActivity {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = userAuthentication.getCurrentUser();
-        //TODO updateUI(currentUser);
 
         if(currentUser != null){
-            Intent skipLog = new Intent(LoginActivity.this, MainActivity.class);
-            startActivity(skipLog);
+            Intent mainActivityIntent = new Intent(LoginActivity.this, MainActivity.class);
+            startActivity(mainActivityIntent);
             finish();
         }
     }
 
+    /**
+     * This method is used to create a new user into the realtime database. It checks for not null
+     * fields and passwords entered match. Then it creates the user on the database.
+     */
     public void createAccount(View view)
     {
-        /*Toast.makeText(getApplicationContext(), "Came into the function", Toast.LENGTH_SHORT).show();*/
-
         if(TextUtils.isEmpty(userEmailEntered.getText())  || TextUtils.isEmpty(userPasswordEntered.getText()) || TextUtils.isEmpty(userPasswordRepeated.getText()))
         {
             Toast.makeText(getApplicationContext(), "Please fill in every field", Toast.LENGTH_SHORT).show();
@@ -89,6 +91,10 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
+        /**
+         * This is triggered when a user registration is complete. It is a listener on the
+         * database and is in charge of automatically inserting default values for the new user settings
+         */
         userAuthentication.createUserWithEmailAndPassword(userEmailEntered.getText().toString().trim(), userPasswordEntered.getText().toString().trim())
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -110,7 +116,7 @@ public class LoginActivity extends AppCompatActivity {
                                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
                                 finish();
                             } else {
-                                // If sign in fails, display a message to the user.
+                                // In case of data set fail, display a message to the user.
                                 Log.w(TAG, "createUserWithEmail:failure", task.getException());
                                 Toast.makeText(getApplicationContext(), "Authentication failed.", Toast.LENGTH_SHORT).show();
                             }
@@ -121,6 +127,10 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * This function is used for logging in a user. It first checks that there are no null fields
+     * And then checks the values against the ones stored on Firebase's user auth.
+     */
     public void loginUser(View view)
     {
 
@@ -153,6 +163,10 @@ public class LoginActivity extends AppCompatActivity {
                 });
     }
 
+    /**
+     * These two methods are used for switching between the "register" and the "login" interfaces
+     * It hides or shows the relevant fields and buttons at each time.
+     */
     public void switchToRegister(View view)
     {
         passwordInput2.setVisibility(VISIBLE);
